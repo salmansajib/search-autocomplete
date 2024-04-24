@@ -24,6 +24,12 @@ function SearchAutocomplete() {
     }
   }
 
+  function handleClick(e) {
+    setShowDropdown(false);
+    setSearchParam(e.target.innerText);
+    setFilteredUsers([]);
+  }
+
   async function fetchListOfUsers() {
     try {
       setLoading(true);
@@ -64,7 +70,9 @@ function SearchAutocomplete() {
         />
       )}
 
-      {showDropdown && <Suggesstions data={filteredUsers} />}
+      {showDropdown && (
+        <Suggesstions handleClick={handleClick} data={filteredUsers} />
+      )}
     </div>
   );
 }
